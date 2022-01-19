@@ -7,7 +7,12 @@ block content
     a(href=item.group.url) #{item.group.name}
   p #[strong Details:] #{item.details}
   hr
-  p
-    a(href=item.url+'/delete') Delete Item
+  
   p
     a(href=item.url+'/update') Update Item
+  p
+    form(method='POST' action='')
+      div.form-group
+        input#id.form-control(type='hidden',name='id', required='true', value=item._id )
+
+      button.btn.btn-primary(type='submit') Delete

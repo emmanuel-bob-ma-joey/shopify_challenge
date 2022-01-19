@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 Group: #{group.name}
+  div(style='margin-left:20px;margin-top:20px')
+    h4 Items
+    dl
+      each item in group_items
+        dt
+          a(href=item.url) #{item.name}
+        dd #{item.details}
+
+      else
+        p Empty group
+  hr
+  p
+    a(href=group.url+'/delete') Delete group
+  p
+    a(href=group.url+'/update') Update group
+//-Copy to Clipboard
+
