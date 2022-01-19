@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Title: #{item.name}
+
+  p #[strong Group:]
+    a(href=item.group.url) #{item.group.name}
+  p #[strong Details:] #{item.details}
+  hr
+  p
+    a(href=item.url+'/delete') Delete Item
+  p
+    a(href=item.url+'/update') Update Item
