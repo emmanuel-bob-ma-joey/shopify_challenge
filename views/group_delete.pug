@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 #{title}: #{group.name}
+
+  if group_items.length
+
+    p #[strong Delete or move the following items before attempting to delete this group.]
+
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 Items
+
+      dl
+      each item in group_items
+        dt
+          a(href=item.url) #{item.name}
+        dd #{item.details}
+
+  else
+    p Do you really want to delete this group?
+
+    form(method='POST' action='')
+      div.form-group
+        input#groupid.form-control(type='hidden',name='groupid', required='true', value=group._id )
+
+      button.btn.btn-primary(type='submit') Delete

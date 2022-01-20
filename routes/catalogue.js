@@ -38,5 +38,17 @@ router.post('/group/create', group_controller.group_create_post);
 // GET request for one group.
 router.get('/group/:id', group_controller.group_detail);
 
+// GET request to delete group.
+router.get('/group/:id/delete', group_controller.group_delete_get);
+
+// POST request to delete group.
+router.post('/group/:id/delete', group_controller.group_delete_post);
+
+// GET request to update group.
+router.get('/group/:id/update', group_controller.group_update_get);
+
+// POST request to update Author.
+router.post('/group/:id/update', group_controller.group_update_post);
+
 
 module.exports = router;

@@ -37,7 +37,6 @@ exports.item_create_post = [
     // Validate and sanitise fields.
     body('name', 'Name must not be empty.').trim().isLength({ min: 1 }).escape(),
     body('details', 'Details must not be empty.').trim().isLength({ min: 1 }).escape(),
-  
    
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -46,22 +45,13 @@ exports.item_create_post = [
         const errors = validationResult(req);
 
         // Create new item object with trimmed data
-        var item;
-        //if (req.body.group == ''){
-        //    item = new Item(
-        //        {name: req.body.name,
-        //        details: req.body.details
-        //    });
-        //}
-        //else{
-        item = new Item({ name: req.body.name,
-        group: req.body.group,
-        details: req.body.details,
-        });
-        //}
-        console.log('this is name'+req.body.name);
-        console.log('this is group name'+req.body.group);
-
+        var item = new Item(
+            { name: req.body.name,
+                group: req.body.group,
+                details: req.body.details,
+             }
+        );
+        
         if (!errors.isEmpty()) {
             //errors so render form again with sanitized values/error messages.
 
@@ -70,8 +60,7 @@ exports.item_create_post = [
                 groups: function(callback) {
                     Group.find(callback);
                 },
-            }, 
-            function(err, results) {
+            }, function(err, results) {
                 if (err) { return next(err); }
                 res.render('create_item', { title: 'Create Item',groups:results.groups, item: item, errors: errors.array() });
             });
@@ -183,12 +172,10 @@ exports.item_update_post = [
         // Create a Book object with escaped/trimmed data and old id.
         var item = new Item(
           { name: req.body.name,
-            //group: req.body.group,
-            group: (typeof req.body.group==='undefined') ? [] : req.body.genre,
+            group: req.body.group,
             details: req.body.details,
             _id:req.params.id //to keep id the same
            });
-        console.log(req.body.group);
 
         if (!errors.isEmpty()) {
             // render form again with sanitized values/error messages.
