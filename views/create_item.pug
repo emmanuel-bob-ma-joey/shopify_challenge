@@ -23,6 +23,7 @@ block content
             ) #{group.name}
           else
             option(value=group._id) #{group.name}
+        //-option(value= '') none
     div.form-group
       label(for='details') Details:
       textarea#details.form-control(type='textarea', placeholder='Details' name='details' required='true') #{undefined===item ? '' : item.details}

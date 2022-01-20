@@ -19,7 +19,7 @@ router.get('/item/:id', item_controller.item_detail);
 
 //POST request item page - delete item
 router.post('/item/:id',item_controller.item_delete_post)
-// GET request to update Book.
+// GET request to update item.
 
 router.get('/item/:id/update', item_controller.item_update_get);
 
